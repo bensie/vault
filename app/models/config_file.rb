@@ -9,14 +9,19 @@ class ConfigFile < ActiveRecord::Base
 
   friendly_id :name
 
-  def api_hash
+  def api_hash(options = {})
     hash = {}
     hash[app.environment] = {}
 
     config_vars.each do |cv|
       hash[app.environment][cv.key] = cv.value
     end
-    hash
+
+    if options[:omit_environment]
+      hash[app.environment]
+    else
+      hash
+    end
   end
 
 end
