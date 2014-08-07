@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140807010744) do
   create_table "apps", force: true do |t|
     t.string   "name"
     t.string   "uuid"
+    t.string   "environment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

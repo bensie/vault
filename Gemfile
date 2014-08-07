@@ -7,6 +7,7 @@ gem "pg"
 
 gem "coffee-rails", "~> 4.0.0"
 gem "default_value_for", "~> 3.0.0"
+gem "friendly_id", "~> 5.0.4"
 gem "jquery-rails"
 gem "puma", "~> 2.9.0"
 gem "rails_12factor"
