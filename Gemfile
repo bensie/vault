@@ -5,6 +5,7 @@ ruby "2.1.2"
 gem "rails", "4.1.5"
 gem "pg"
 
+gem "bootstrap-sass", "~> 3.2.0.1"
 gem "coffee-rails", "~> 4.0.0"
 gem "default_value_for", "~> 3.0.0"
 gem "friendly_id", "~> 5.0.4"
