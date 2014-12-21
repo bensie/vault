@@ -1,0 +1,8 @@
+<%= simple_form_for [config_var.config_file.app, config_var.config_file, config_var], remote: true,
+  wrapper: :inline_form,
+  html: { class: 'form-inline' } do |f| %>
+  <%= f.input :key, label: false, placeholder: "Key" %>
+  <%= f.input :value, label: false, placeholder: "Value" %>
+  <%= f.button :submit, "Save", class: "btn btn-primary btn-sm" %>
+  <%= link_to "Cancel", [config_var.config_file.app, config_var.config_file, config_var], class: "btn btn-default btn-sm", remote: true if config_var.persisted? %>
+<% end %>

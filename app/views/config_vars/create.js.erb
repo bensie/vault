@@ -1,0 +1,6 @@
+<% if @config_var.errors.any? %>
+  $("#config_var_<%= @config_var.id %>").html("<%=j render 'inline_form', config_var: @config_var %>");
+<% else %>
+  $("<%=j render 'config_var', config_var: @config_var %>").appendTo("#<%= dom_id(@config_file) %>_config_vars");
+  $("#<%= dom_id(@config_file) %>_new_config_var").html("<%=j render 'new_button', config_file: @config_file %>");
+<% end %>

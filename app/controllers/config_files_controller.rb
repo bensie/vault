@@ -15,7 +15,16 @@ class ConfigFilesController < ApplicationController
       format.yaml {
         redirect_to url_for(format: :yml)
       }
+      format.js
     end
+  end
+
+  def new
+    @config_file = @app.config_files.build
+  end
+
+  def create
+    @config_file = @app.config_files.create(permitted_params(params[:config_file]).config_file)
   end
 
   private

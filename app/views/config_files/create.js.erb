@@ -1,0 +1,6 @@
+<% if @config_file.errors.any? %>
+  $("#new_config_file").html("<%=j render 'form', config_file: @config_file %>");
+<% else %>
+  $("<%=j render 'config_file', config_file: @config_file %>").appendTo("#config_files");
+  $("#new_config_file").html("<%=j render 'new_button' %>");
+<% end %>

@@ -6,8 +6,9 @@ class ConfigFile < ActiveRecord::Base
   has_many :config_vars, dependent: :destroy
 
   validates_presence_of :name, :app
+  validates_uniqueness_of :name, scope: :app
 
-  friendly_id :name
+  friendly_id :name, use: [:finders]
 
   def api_hash(options = {})
     hash = {}

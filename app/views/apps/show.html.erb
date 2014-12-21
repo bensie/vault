@@ -1,0 +1,23 @@
+<div class="pull-right">
+
+</div>
+
+<h2>
+  <%= @app.name %>
+  <small>
+  <span class="label label-default"><%= @app.environment %></span><br>
+    <%= @app.uuid %>
+    <%= link_to %(<span class="glyphicon glyphicon-refresh"></span>).html_safe, [:rotate_uuid, @app], method: :post, data: { confirm: "Are you sure?" }, title: "Rotate UUID" %>
+  </small>
+</h2>
+
+<div id="config_files">
+  <%= render @app.config_files %>
+</div>
+
+<br>
+<hr>
+
+<div id="new_config_file">
+  <%= render "config_files/new_button" %>
+</div>

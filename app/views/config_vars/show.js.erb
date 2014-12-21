@@ -1,0 +1,2 @@
+  $("#config_var_<%= @config_var.id %>").html("<%=j render 'config_var', config_var: @config_var %>");
+  $("#<%= dom_id(@config_file) %>_new_config_var").html("<%=j render 'new_button', config_file: @config_file %>");

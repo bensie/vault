@@ -1,0 +1,10 @@
+<div id="<%= dom_id(config_var) %>" class="config-var">
+  <div class="actions">
+    <%= link_to %(<span class="glyphicon glyphicon-edit"></span>).html_safe, [:edit, config_var.config_file.app, config_var.config_file, config_var], remote: true %>
+    &nbsp;
+    &nbsp;
+    <%= link_to %(<span class="glyphicon glyphicon-trash"></span>).html_safe, [config_var.config_file.app, config_var.config_file, config_var], remote: true, method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+  <div class="key"><%= config_var.key %></div>
+  <div class="value"><%= config_var.value %></div>
+</div>

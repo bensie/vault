@@ -1,0 +1,17 @@
+<hr>
+
+<h3>
+  <%= config_file.name %>
+  <small>
+    <%= link_to "JSON", app_config_file_path(@app, config_file, format: :json) %>
+    <%= link_to "YAML", app_config_file_path(@app, config_file, format: :yml) %>
+  </small>
+</h3>
+
+<div id="<%= dom_id(config_file) %>_config_vars">
+  <%= render config_file.config_vars %>
+</div>
+
+<div id="<%= dom_id(config_file) + "_new_config_var" %>">
+  <%= render "config_vars/new_button", config_file: config_file %>
+</div>

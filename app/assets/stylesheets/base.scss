@@ -1,0 +1,21 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.config-var {
+  width: 100%;
+  line-height: 36px;
+  .key {
+    display: inline-block;
+    font-size: 16px;
+    width: 33%;
+    padding-left: 20px;
+  }
+  .value {
+    display: inline-block;
+    width: 33%;
+  }
+  .actions {
+    display: inline-block;
+    width: 5%;
+  }
+}
