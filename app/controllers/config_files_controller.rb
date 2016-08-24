@@ -37,6 +37,12 @@ class ConfigFilesController < ApplicationController
     @config_file.sync_to_s3!
   end
 
+  def destroy
+    @config_file = @app.config_files.find(params[:id])
+    @config_file.destroy
+    redirect_to @app
+  end
+
   private
 
   def find_app

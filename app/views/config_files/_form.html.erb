@@ -3,5 +3,8 @@
 <%= simple_form_for [@app, config_file], remote: true do |f| %>
   <%= f.input :name %>
   <%= f.input :omit_environment_from_output, as: :boolean, hint: "This will remove the 'production', 'staging', or other environment namespace around all config variables." %>
+  <div class="pull-right">
+    <%= link_to "Delete Config File", [@app, config_file], class: "btn btn-danger", data: { confirm: "Are you sure? All config variables in this file will also be deleted." }, method: :delete if config_file.persisted? %>
+  </div>
   <%= f.submit "Save Config File", class: "btn btn-primary" %>
 <% end %>
