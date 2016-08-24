@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824184529) do
+ActiveRecord::Schema.define(version: 20160824212110) do
 
   create_table "apps", force: :cascade do |t|
     t.string   "name",                  limit: 255
@@ -27,10 +27,11 @@ ActiveRecord::Schema.define(version: 20160824184529) do
   end
 
   create_table "config_files", force: :cascade do |t|
-    t.integer  "app_id",     limit: 4
-    t.string   "name",       limit: 255
+    t.integer  "app_id",                       limit: 4
+    t.string   "name",                         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "omit_environment_from_output",             default: false
   end
 
   add_index "config_files", ["app_id"], name: "index_config_files_on_app_id", using: :btree
