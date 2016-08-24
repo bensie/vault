@@ -29,7 +29,8 @@ class PermittedParams
 
   def config_file_attributes
     [
-      :name
+      :name,
+      :omit_environment_from_output
     ]
   end
 

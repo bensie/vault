@@ -22,7 +22,12 @@ class ConfigFile < ActiveRecord::Base
         hash[app.environment][cv.key] = cv.value
       end
     end
-    hash
+
+    if omit_environment_from_output
+      hash[app.environment]
+    else
+      hash
+    end
   end
 
   def copy_config_vars!(existing_config_file)

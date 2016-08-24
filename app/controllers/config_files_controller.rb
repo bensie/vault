@@ -27,6 +27,16 @@ class ConfigFilesController < ApplicationController
     @config_file = @app.config_files.create(permitted_params(params[:config_file]).config_file)
   end
 
+  def edit
+    @config_file = @app.config_files.find(params[:id])
+  end
+
+  def update
+    @config_file = @app.config_files.find(params[:id])
+    @config_file.update_attributes(permitted_params(params[:config_file]).config_file)
+    @config_file.sync_to_s3!
+  end
+
   private
 
   def find_app

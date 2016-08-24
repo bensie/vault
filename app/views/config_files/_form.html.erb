@@ -1,4 +1,7 @@
+<hr>
+
 <%= simple_form_for [@app, config_file], remote: true do |f| %>
   <%= f.input :name %>
-  <%= f.button :submit %>
+  <%= f.input :omit_environment_from_output, as: :boolean, hint: "This will remove the 'production', 'staging', or other environment namespace around all config variables." %>
+  <%= f.submit "Save Config File", class: "btn btn-primary" %>
 <% end %>

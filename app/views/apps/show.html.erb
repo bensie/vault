@@ -1,13 +1,12 @@
-<div class="pull-right">
-
-</div>
-
 <h2>
   <%= @app.name %>
   <small>
-  <span class="label label-default"><%= @app.environment %></span><br>
-    <%= @app.uuid %>
-    <%= link_to %(<span class="glyphicon glyphicon-refresh"></span>).html_safe, [:rotate_uuid, @app], method: :post, data: { confirm: "Are you sure?" }, title: "Rotate UUID" %>
+    <span class="label label-default"><%= @app.environment %></span>
+    <%= link_to "edit", [:edit, @app], class: "btn btn-link" %>
+    <div>
+      <%= @app.uuid %>
+      <%= link_to %(<span class="glyphicon glyphicon-refresh"></span>).html_safe, [:rotate_uuid, @app], method: :post, data: { confirm: "Are you sure?" }, title: "Rotate UUID" %>
+    </div>
   </small>
 </h2>
 
