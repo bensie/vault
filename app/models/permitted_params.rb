@@ -18,7 +18,12 @@ class PermittedParams
   def app_attributes
     [
       :name,
-      :environment
+      :environment,
+      :aws_access_key_id,
+      :aws_secret_access_key,
+      :aws_bucket,
+      :s3_path_prefix,
+      :sync_to_s3
     ]
   end
 

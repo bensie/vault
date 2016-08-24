@@ -1,7 +1,6 @@
 require "securerandom"
 
 class App < ActiveRecord::Base
-
   has_many :config_files, -> { order(:name) }, dependent: :destroy
 
   validates_presence_of :name,
@@ -22,5 +21,4 @@ class App < ActiveRecord::Base
     self.uuid = SecureRandom.uuid
     save!
   end
-
 end

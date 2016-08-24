@@ -4,6 +4,10 @@ class AppsController < ApplicationController
     @app = App.where(uuid: params[:id]).includes(config_files: :config_vars).first!
   end
 
+  def edit
+    @app = App.find_by!(uuid: params[:id])
+  end
+
   def new
     @app = App.new
   end
@@ -11,6 +15,15 @@ class AppsController < ApplicationController
   def create
     @app = App.new(permitted_params(params[:app]).app)
     redirect_to @app
+  end
+
+  def update
+    @app = App.find_by!(uuid: params[:id])
+    if @app.update_attributes(permitted_params(params[:app]).app)
+      redirect_to @app
+    else
+      render "edit"
+    end
   end
 
   def rotate_uuid

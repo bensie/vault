@@ -10,6 +10,7 @@ class ConfigVarsController < ApplicationController
 
   def create
     @config_var = @config_file.config_vars.create(permitted_params(params[:config_var]).config_var)
+    @config_file.sync_to_s3!
   end
 
   def edit
@@ -17,10 +18,12 @@ class ConfigVarsController < ApplicationController
 
   def update
     @config_var.update_attributes(permitted_params(params[:config_var]).config_var)
+    @config_file.sync_to_s3!
   end
 
   def destroy
     @config_var.destroy
+    @config_file.sync_to_s3!
   end
 
   private

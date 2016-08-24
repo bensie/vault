@@ -11,14 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807010744) do
+ActiveRecord::Schema.define(version: 20160824184529) do
 
   create_table "apps", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "uuid",        limit: 255
-    t.string   "environment", limit: 255
+    t.string   "name",                  limit: 255
+    t.string   "uuid",                  limit: 255
+    t.string   "environment",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "aws_access_key_id",     limit: 255
+    t.string   "aws_secret_access_key", limit: 255
+    t.string   "aws_bucket",            limit: 255
+    t.string   "s3_path_prefix",        limit: 255
+    t.boolean  "sync_to_s3",                        default: false, null: false
   end
 
   create_table "config_files", force: :cascade do |t|

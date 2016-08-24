@@ -1,4 +1,19 @@
 <%= simple_form_for @app do |f| %>
-  <%= f.input :name %>
-  <%= f.input :environment %>
+  <fieldset>
+    <legend>Basic Info</legend>
+    <%= f.input :name %>
+    <%= f.input :environment %>
+  </fieldset>
+
+  <fieldset>
+    <legend>AWS Sync Configuration</legend>
+
+    <%= f.input :sync_to_s3, label: "Sync Config Files To S3", as: :boolean, hint: "Enabling this will upload a copy of your configuration file to the bucket (and optional path prefix) configured below every time the file is changed." %>
+    <%= f.input :aws_access_key_id, label: "AWS Access Key ID" %>
+    <%= f.input :aws_secret_access_key, label: "AWS Secret Access Key" %>
+    <%= f.input :aws_bucket, label: "AWS Bucket", hint: "Ensure this user has write access to the" %>
+    <%= f.input :s3_path_prefix, label: "S3 Path Prefix", hint: "We'll prepend this value to the configuration file's filename. If you want it namespaced to a folder on S3, add a trailing slash (namespace/)", placeholder: "path/to/config/" %>
+    <%= f.submit "Save App", class: "btn btn-primary" %>
+    <%= link_to "Cancel", @app, class: "btn btn-link" %>
+  </fieldset>
 <% end %>

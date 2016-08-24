@@ -22,12 +22,7 @@ class ConfigFile < ActiveRecord::Base
         hash[app.environment][cv.key] = cv.value
       end
     end
-
-    if options[:omit_environment]
-      hash[app.environment]
-    else
-      hash
-    end
+    hash
   end
 
   def copy_config_vars!(existing_config_file)
@@ -35,6 +30,30 @@ class ConfigFile < ActiveRecord::Base
     existing_config_file.config_vars.each do |var|
       config_vars.where(key: var.key).first_or_create(value: var.value)
     end
+  end
+
+  def sync_to_s3!
+    return if !app.sync_to_s3
+
+    client = Aws::S3::Client.new(
+      region:            "us-east-1",
+      access_key_id:     app.aws_access_key_id,
+      secret_access_key: app.aws_secret_access_key
+    )
+    client.put_object(
+      acl:          "private",
+      body:         api_hash.to_yaml,
+      bucket:       app.aws_bucket,
+      key:          app.s3_path_prefix.to_s + name + ".yml",
+      content_type: "application/x-yaml"
+    )
+    client.put_object(
+      acl:          "private",
+      body:         api_hash.to_json,
+      bucket:       app.aws_bucket,
+      key:          app.s3_path_prefix.to_s + name + ".json",
+      content_type: "application/json"
+    )
   end
 
   private
