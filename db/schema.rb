@@ -13,30 +13,27 @@
 
 ActiveRecord::Schema.define(version: 20140807010744) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "apps", force: true do |t|
-    t.string   "name"
-    t.string   "uuid"
-    t.string   "environment"
+  create_table "apps", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "uuid",        limit: 255
+    t.string   "environment", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "config_files", force: true do |t|
-    t.integer  "app_id"
-    t.string   "name"
+  create_table "config_files", force: :cascade do |t|
+    t.integer  "app_id",     limit: 4
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "config_files", ["app_id"], name: "index_config_files_on_app_id", using: :btree
 
-  create_table "config_vars", force: true do |t|
-    t.integer  "config_file_id"
-    t.string   "key"
-    t.string   "value"
+  create_table "config_vars", force: :cascade do |t|
+    t.integer  "config_file_id", limit: 4
+    t.string   "key",            limit: 255
+    t.string   "value",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
