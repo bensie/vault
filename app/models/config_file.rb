@@ -15,7 +15,12 @@ class ConfigFile < ActiveRecord::Base
     hash[app.environment] = {}
 
     config_vars.each do |cv|
-      hash[app.environment][cv.key] = cv.value
+      if cv.key.include?("/")
+        parts = [app.environment] + cv.key.split("/")
+        hash = configure_nested_hash_keys_for_key(hash, parts, cv.value)
+      else
+        hash[app.environment][cv.key] = cv.value
+      end
     end
 
     if options[:omit_environment]
@@ -32,4 +37,16 @@ class ConfigFile < ActiveRecord::Base
     end
   end
 
+  private
+
+  def configure_nested_hash_keys_for_key(hash, key_parts, value)
+    current = key_parts.shift
+    if current && key_parts.length > 0
+      hash[current] ||= {}
+      configure_nested_hash_keys_for_key(hash[current], key_parts, value)
+    else
+      hash[current] = value
+    end
+    hash
+  end
 end
