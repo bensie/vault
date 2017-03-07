@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 
-ruby "2.3.1"
+ruby "2.4.0"
 
-gem "rails", "4.2.7.1"
+gem "rails", "4.2.8"
 gem "pg"
 
-gem "aws-sdk", "~> 2.5.6"
+gem "aws-sdk", "~> 2.8.1"
 gem "bootstrap-sass", "~> 3.3.7"
 gem "default_value_for", "~> 3.0.2"
 gem "friendly_id", "~> 5.1.0"
